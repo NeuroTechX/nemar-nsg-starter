@@ -16,6 +16,7 @@ import glob
 import json
 import os
 import pathlib
+import sys
 
 import pytest
 
@@ -90,47 +91,14 @@ def test_reference_cell_beats_chance():
         pytest.skip("no BIOT/frozen/linear reference cell in this shard")
 
 
-# EEGPT with gradients through the backbone needs > 32 GB at upstream's protocol (batch 64): it OOMs
-# on the first backward on every V100-32GB (FINDINGS §8b/§8c, LIMITATIONS §2). That is a documented
-# platform limit, reported per dataset as "not runnable at protocol", not a stack problem.
-KNOWN_V100_OOM = ("EEGPT", {"lora", "ia3", "adalora", "dora", "oft", "full", "full_finetune", "two_stages"})
-
-
-# public1 (2026-10-31): REVE + DoRA OOMs on FACED only (9 classes, the largest public dataset per
-# window); every other REVE strategy and dataset fits. LIMITATIONS §2.
-KNOWN_V100_OOM_CELLS = {("REVE", "dora", "braindecode/faced")}
-
-# Cells that cannot run at upstream's protocol on ANY released peft, diagnosed locally on CPU
-# (docs/FINDINGS.md §9b). Matched on the exception text, so a different failure in the same cell
-# is still RED.
-KNOWN_UPSTREAM_BROKEN = [
-    # open-eeg-bench passes LaBraM's top-level nn.Parameter `temporal_embedding` as LoRA-family
-    # target_parameters: peft 0.21.2 rejects top-level parameters, 0.17-0.18 reject the ParamWrapper
-    # with lora_dropout=0.1 (upstream's default) -> no peft release runs it.
-    ("LaBraM", {"lora", "dora", "adalora"}, "Targeting an nn.Parameter on the top-level module"),
-    # peft OFT unfolds every 4-D input as if it fed a Conv2d; CBraMod's spectral_proj and REVE's
-    # to_patch_embedding are Linear layers fed (B, C, patch, feat) -> empty unfold -> reshape fails.
-    ("CBraMod", {"oft"}, "is invalid for input of size 0"),
-    ("REVE", {"oft"}, "is invalid for input of size 0"),
-]
+# The documented failures (V100 OOMs, upstream/peft bugs) live in sweep/oeb_known.py, shared with
+# `oeb_plan.py submit --redo-lost` so a shard that can only fail the same way is not re-run.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2] / "sweep"))
+from oeb_known import OOM, deadline_documented, is_known_failure as _known_failure  # noqa: E402
 
 
 def _known_v100_oom(r):
-    bb, strat = KNOWN_V100_OOM
-    exc = r.get("exception") or ""
-    oom = "out of memory" in exc or "OutOfMemoryError" in exc
-    return oom and ((bb in (r.get("backbone") or "") and r.get("finetuning") in strat)
-                    or (r.get("backbone"), r.get("finetuning"), r.get("dataset")) in KNOWN_V100_OOM_CELLS)
-
-
-def _known_upstream_broken(r):
-    exc = r.get("exception") or ""
-    return any(bb in (r.get("backbone") or "") and r.get("finetuning") in strat and msg in exc
-               for bb, strat, msg in KNOWN_UPSTREAM_BROKEN)
-
-
-def _known_failure(r):
-    return _known_v100_oom(r) or _known_upstream_broken(r)
+    return _known_failure(r) and any(m in (r.get("exception") or "") for m in OOM)
 
 
 def test_no_cell_failed_for_a_software_reason():
@@ -146,10 +114,19 @@ def test_no_cell_failed_for_a_software_reason():
     assert not bad, "\n".join(f"{n:3d} x {m}" for m, n in bad.most_common())
 
 
-def test_only_the_documented_eegpt_cells_hit_the_32gb_ceiling():
-    """Every OOM must be one of the EEGPT strategies (or KNOWN_V100_OOM_CELLS) documented as not
-    runnable at protocol on a V100-32GB; an OOM anywhere else is new information that belongs in LIMITATIONS §2."""
+def test_only_the_documented_cells_hit_the_32gb_ceiling():
+    """Every OOM must be one documented in sweep/oeb_known.py as not runnable at protocol on a
+    V100-32GB; an OOM anywhere else is new information that belongs in LIMITATIONS §2."""
     other = [(r.get("backbone"), r.get("finetuning"), r.get("dataset"))
              for s in _summaries() for r in s["rows"]
              if "out of memory" in (r.get("exception") or "") and not _known_v100_oom(r)]
     assert not other, f"undocumented OOM cells: {other}"
+
+
+def test_deadline_stops_are_documented():
+    """A shard the driver stopped before the NSG time limit returned only part of its cells. That is
+    fine only for shards whose cells are known to exceed the 48 h job limit (sweep/oeb_known.py)."""
+    undocumented = [((s.get("shard") or {}).get("backbones"), (s.get("shard") or {}).get("datasets"),
+                     s["deadline_stopped"]) for s in _summaries()
+                    if s.get("deadline_stopped") and not deadline_documented(s)]
+    assert not undocumented, f"shards stopped by the deadline guard: {undocumented}"

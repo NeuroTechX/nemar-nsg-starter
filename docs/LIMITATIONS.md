@@ -43,6 +43,8 @@ before you rely on a specific number).
   OpenEEGBench's EEGPT at batch 64) cannot run at its published protocol here — see `OPENEEGBENCH.md` §4a.
   **[measured 2026-10-31]** In the 427-row public1 sweep the only other OOM was REVE + DoRA on FACED
   (one cell); every other REVE cell fits (`FINDINGS.md` §9b).
+  **[measured 2026-11-07]** LaBraM OOMs at every strategy, frozen included, on chbmit, faced and
+  isruc_sleep, and EEGPT OOMs frozen on isruc_sleep. The authoritative list is `sweep/oeb_known.py`.
 
 ## 3. Software environment is fixed and locked down
 

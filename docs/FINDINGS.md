@@ -477,3 +477,20 @@ Two harness bugs found and fixed on the way (`5f41213`): `poll` aborted the whol
 terminal job listed no outputs, so nothing was saved and nothing resubmitted for ~12 h; and a Slurm
 TIME LIMIT kill returns no tarball at all, so the driver now stops starting cells once the longest
 cell so far + 30 min no longer fits in `runtime_hours`.
+
+**Update 2026-11-07: 25 of 26 shards in, contract GREEN.** The last six big-dataset shards came back.
+`merge` over 25 shards: **408 rows, 83 not completed, every one a documented failure**
+(`sweep/oeb_known.py`). Two new 32 GB limits and the first real test of the deadline guard:
+
+- **LaBraM cannot run on chbmit, faced or isruc_sleep at all on a V100**: every strategy OOMs, frozen
+  included (isruc_sleep asks for 35 GiB in one allocation), and its LoRA-family cells hit the upstream
+  bug above. EEGPT OOMs even frozen on isruc_sleep.
+- **Signal-JEPA on isruc_sleep: cells of up to 17.5 h**, so 9 cells cannot fit in a 48 h job. The
+  deadline guard stopped after 4 cells and returned them (before `5f41213`, Slurm would have killed the
+  job and returned nothing). Finishing the other 5 needs one shard per strategy.
+- physionet: its rerun failed inside NSG while still `SUBMITTING` (an empty output listing, like
+  chbmit_bendr), so it was marked lost after 3 fetches and resubmitted on 2026-11-07.
+
+The known-failure list moved from the contract into `sweep/oeb_known.py`, which `submit --redo-lost`
+now also reads: a shard whose only failures are documented (LaBraM on the big datasets, 0 completed)
+is a result, not something to re-run forever.

@@ -1,7 +1,7 @@
 {
   "name": "public1",
-  "n_rows": 427,
-  "n_failed": 68,
+  "n_rows": 408,
+  "n_failed": 83,
   "pooled_cache": "oeb/public1/pooled_results",
   "shards": [
     {
@@ -82,42 +82,6 @@
       ],
       "datasets": [
         "bcic2020_3"
-      ],
-      "strategies": [
-        "frozen",
-        "ridge_probe",
-        "lora",
-        "ia3",
-        "adalora",
-        "dora",
-        "oft",
-        "full_finetune",
-        "two_stages"
-      ],
-      "heads": [
-        "linear_head"
-      ],
-      "seeds": [
-        0
-      ],
-      "device": "cuda",
-      "torch": "2.4.1",
-      "oeb": "0.6.0",
-      "peft": "peft==0.21.2",
-      "transformers": "transformers==4.46.3"
-    },
-    {
-      "backbones": [
-        "biot",
-        "labram",
-        "bendr",
-        "cbramod",
-        "signal_jepa",
-        "reve",
-        "eegpt"
-      ],
-      "datasets": [
-        "physionet"
       ],
       "strategies": [
         "frozen",
@@ -622,6 +586,192 @@
     {
       "backbones": [
         "bendr"
+      ],
+      "datasets": [
+        "isruc_sleep"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "labram"
+      ],
+      "datasets": [
+        "chbmit"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "labram"
+      ],
+      "datasets": [
+        "faced"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "labram"
+      ],
+      "datasets": [
+        "isruc_sleep"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "signal_jepa"
+      ],
+      "datasets": [
+        "isruc_sleep"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "reve"
+      ],
+      "datasets": [
+        "isruc_sleep"
+      ],
+      "strategies": [
+        "frozen",
+        "ridge_probe",
+        "lora",
+        "ia3",
+        "adalora",
+        "dora",
+        "oft",
+        "full_finetune",
+        "two_stages"
+      ],
+      "heads": [
+        "linear_head"
+      ],
+      "seeds": [
+        0
+      ],
+      "device": "cuda",
+      "torch": "2.4.1",
+      "oeb": "0.6.0",
+      "peft": "peft==0.21.2",
+      "transformers": "transformers==4.46.3",
+      "runtime_hours": 48.0
+    },
+    {
+      "backbones": [
+        "eegpt"
       ],
       "datasets": [
         "isruc_sleep"

@@ -32,6 +32,8 @@ import time
 import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+from oeb_known import only_known_failures  # noqa: E402  (sweep/ is on sys.path when run as a script)
 NSGR = os.path.join(os.path.dirname(HERE), "nsgr", "nsgr.sh")
 PUBLIC_DATASETS = ["arithmetic_zyma2019", "bcic2a", "bcic2020_3", "physionet",
                    "chbmit", "faced", "isruc_sleep", "mdd_mumtaz2016"]
@@ -108,13 +110,15 @@ def _shard_summary(root, sid):
 
 def lost_shards(root, jobs):
     """Fetched shards with nothing usable: no tarball (NSG disk full, FINDINGS §9), no summary, or
-    zero completed cells (e.g. the HF rate limit took the dataset out). These are re-run, not results."""
+    zero completed cells (e.g. the HF rate limit took the dataset out). These are re-run, not results.
+    Zero completed cells that are all documented failures (LaBraM on the big datasets) are a result."""
     out = []
     for sid, j in jobs.items():
         if not j.get("fetched"):
             continue
         s = _shard_summary(root, sid)
-        if s is None or not s.get("n_completed"):
+        # a shard whose only failures are documented (oeb_known.py) would fail the same way again
+        if s is None or (not s.get("n_completed") and not only_known_failures(s)):
             out.append(sid)
     return out
 
