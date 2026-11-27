@@ -51,3 +51,5 @@ The preflight verifies input hashes and counts 34 target and 136 standard events
 The script uses the dataset event dictionary, filters continuous scalp EEG from 0.5 to 30 Hz, and extracts −200 to 800 ms around stimulus onset. It baseline-corrects using −200 to 0 ms and rejects epochs exceeding 150 µV peak-to-peak on a scalp EEG channel in the original reference. It re-references the retained trials to the scalp average before averaging each condition. Rejection reasons can overlap when several channels exceed the threshold in one epoch.
 
 **Data credit.** J. W. Couperus, C. M. Bukach, and C. L. Reed, *PURSUE P300 Visual Oddball*, [OpenNeuro ds007056 v1.1.1](https://doi.org/10.18112/openneuro.ds007056.v1.1.1), CC0. The recording is also indexed as [NEMAR on007056](https://nemar.org/dataset/on007056).
+
+**Next.** [Measure the P3 in all 40 ERP CORE participants](../erp-core/README.md) with MNE-BIDS-Pipeline and compare it with the published values.
