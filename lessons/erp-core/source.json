@@ -1,0 +1,210 @@
+{
+  "dataset": "ERP CORE",
+  "citation": "Kappenman, E. S., Farrens, J. L., Zhang, W., Stewart, A. X., & Luck, S. J. (2021). ERP CORE: An open resource for human event-related potential research. NeuroImage, 225, 117465.",
+  "paper_doi": "10.1016/j.neuroimage.2020.117465",
+  "data_doi": "10.18115/D5JW4R",
+  "osf_project": "https://osf.io/thsqg/",
+  "osf_bids_component": "https://osf.io/9f5w7/",
+  "osf_bids_folder_id": "5f762ca7e64e7e0116aa6d38",
+  "license": "CC-BY-SA-4.0",
+  "license_source": "The OSF licence field of nodes thsqg and 9f5w7 and dataset_description.json say CC-BY-4.0, but the LICENSE file in the BIDS folder and License.txt in each component say CC BY-SA 4.0. This lesson follows the stricter CC BY-SA 4.0: credit ERP CORE and share derived data under the same licence.",
+  "participants": 40,
+  "on_openneuro_or_nemar": false,
+  "on_openneuro_note": "No OpenNeuro snapshot of ERP CORE was found on 2026-11-27 (searched dataset names, authors and task labels). The PURSUE datasets ds007052, ds007056, ds007069, ds007096, ds007137 and ds007139 use ERP CORE paradigms with other participants and are on NEMAR.",
+  "manifests": "manifests/<TASK>.tsv lists every file with its size, OSF SHA-256, OSF file id and version",
+  "supported_tasks": [
+    "P3"
+  ],
+  "components": {
+    "P3": {
+      "paradigm": "Active visual oddball",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "epoch_s": [
+        -0.2,
+        0.8
+      ],
+      "baseline_s": [
+        -0.2,
+        0.0
+      ],
+      "rename_events": {
+        "stimulus/11": "stimulus/target",
+        "stimulus/12": "stimulus/non-target",
+        "stimulus/13": "stimulus/non-target",
+        "stimulus/14": "stimulus/non-target",
+        "stimulus/15": "stimulus/non-target",
+        "stimulus/21": "stimulus/non-target",
+        "stimulus/22": "stimulus/target",
+        "stimulus/23": "stimulus/non-target",
+        "stimulus/24": "stimulus/non-target",
+        "stimulus/25": "stimulus/non-target",
+        "stimulus/31": "stimulus/non-target",
+        "stimulus/32": "stimulus/non-target",
+        "stimulus/33": "stimulus/target",
+        "stimulus/34": "stimulus/non-target",
+        "stimulus/35": "stimulus/non-target",
+        "stimulus/41": "stimulus/non-target",
+        "stimulus/42": "stimulus/non-target",
+        "stimulus/43": "stimulus/non-target",
+        "stimulus/44": "stimulus/target",
+        "stimulus/45": "stimulus/non-target",
+        "stimulus/51": "stimulus/non-target",
+        "stimulus/52": "stimulus/non-target",
+        "stimulus/53": "stimulus/non-target",
+        "stimulus/54": "stimulus/non-target",
+        "stimulus/55": "stimulus/target",
+        "response/201": "response/correct",
+        "response/202": "response/incorrect"
+      },
+      "conditions": {
+        "target": "stimulus/target",
+        "non-target": "stimulus/non-target"
+      },
+      "contrast": [
+        "target",
+        "non-target"
+      ],
+      "channel": "Pz",
+      "window_ms": [
+        300,
+        600
+      ],
+      "published": {
+        "n": 34,
+        "difference_mean_amplitude_uv": 6.29,
+        "difference_sd_uv": 3.39,
+        "dz": 1.86,
+        "source": "Kappenman et al. 2021, Tables 1-3 (difference wave, rare minus frequent)",
+        "subject_values": {
+          "file": "reference/Mean_Amplitude_Diff_Waves_P3.txt",
+          "source": "https://osf.io/etdkz/ (P3 All Data and Scripts/EEG_ERP_Processing/ERP_Measurements)",
+          "osf_file_id": "5f18c6c985d25a0024ef6149",
+          "sha256": "e1ce5f448a0dc7f552743cc5e86412d14c95f862b54ef92b870106da82123b86",
+          "license": "CC-BY-SA-4.0"
+        },
+        "excluded_subjects": {
+          "006": "ACC, TC",
+          "009": "AR, TC",
+          "010": "ACC, TC",
+          "030": "AR, TC",
+          "035": "TC",
+          "040": "AR, TC",
+          "source": "P3_Subject_Summary.xlsx in https://osf.io/etdkz/ (AR: over 25% of trials rejected; TC: under 50% of rare trials left; ACC: accuracy under 75%)"
+        }
+      },
+      "monitor_delay_ms": 26,
+      "monitor_delay_source": "Script1_Import_Raw_EEG_Shift_DS_Reref_Hpfilt.m in https://osf.io/etdkz/ shifts the stimulus codes 26 ms later (LCD delay measured with a photosensor). The BIDS events are not shifted."
+    }
+  },
+  "other_components_published": {
+    "N170": {
+      "paradigm": "Face perception",
+      "reference": "average",
+      "channel": "PO8",
+      "window_ms": [
+        110,
+        150
+      ],
+      "time_locked": "stimulus",
+      "n": 37,
+      "difference_mean_amplitude_uv": -3.37,
+      "difference_sd_uv": 2.71,
+      "contrast": "faces minus cars"
+    },
+    "MMN": {
+      "paradigm": "Passive auditory oddball",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "channel": "FCz",
+      "window_ms": [
+        125,
+        225
+      ],
+      "time_locked": "stimulus",
+      "n": 39,
+      "difference_mean_amplitude_uv": -1.86,
+      "difference_sd_uv": 1.22,
+      "contrast": "deviants minus standards"
+    },
+    "N2pc": {
+      "paradigm": "Simple visual search",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "channel": "PO7/PO8",
+      "window_ms": [
+        200,
+        275
+      ],
+      "time_locked": "stimulus",
+      "n": 35,
+      "difference_mean_amplitude_uv": -1.14,
+      "difference_sd_uv": 1.15,
+      "contrast": "contralateral minus ipsilateral"
+    },
+    "N400": {
+      "paradigm": "Word pair judgment",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "channel": "CPz",
+      "window_ms": [
+        300,
+        500
+      ],
+      "time_locked": "stimulus",
+      "n": 39,
+      "difference_mean_amplitude_uv": -7.61,
+      "difference_sd_uv": 3.27,
+      "contrast": "unrelated minus related"
+    },
+    "LRP": {
+      "paradigm": "Flankers",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "channel": "C3/C4",
+      "window_ms": [
+        -100,
+        0
+      ],
+      "time_locked": "response",
+      "n": 37,
+      "difference_mean_amplitude_uv": -2.4,
+      "difference_sd_uv": 0.94,
+      "contrast": "contralateral minus ipsilateral"
+    },
+    "ERN": {
+      "paradigm": "Flankers",
+      "reference": [
+        "P9",
+        "P10"
+      ],
+      "channel": "FCz",
+      "window_ms": [
+        0,
+        100
+      ],
+      "time_locked": "response",
+      "n": 36,
+      "difference_mean_amplitude_uv": -9.26,
+      "difference_sd_uv": 5.9,
+      "contrast": "incorrect minus correct"
+    }
+  },
+  "pipeline": {
+    "name": "MNE-BIDS-Pipeline",
+    "version": "1.10.1",
+    "config_origin": "https://github.com/mne-tools/mne-bids-pipeline/blob/v1.10.1/mne_bids_pipeline/tests/configs/config_ERP_CORE.py",
+    "license": "BSD-3-Clause"
+  },
+  "attribution": "ERP CORE by Emily S. Kappenman and Steven J. Luck"
+}

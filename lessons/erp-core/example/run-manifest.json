@@ -1,0 +1,116 @@
+{
+  "dataset": {
+    "dataset": "ERP CORE",
+    "paper_doi": "10.1016/j.neuroimage.2020.117465",
+    "data_doi": "10.18115/D5JW4R",
+    "osf_bids_component": "https://osf.io/9f5w7/",
+    "license": "CC-BY-SA-4.0"
+  },
+  "task": "P3",
+  "participants_requested": 40,
+  "participants_processed": 40,
+  "participants_included": 32,
+  "environment": {
+    "python": "3.11.4",
+    "mne_bids_pipeline": "1.10.1",
+    "mne": "1.12.1",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.8"
+  },
+  "measurement": {
+    "channel": "Pz",
+    "window_ms": [
+      300,
+      600
+    ],
+    "rt_window_s": [
+      0.2,
+      1.0
+    ],
+    "monitor_delay_ms": 26,
+    "exclusion": {
+      "max_artifact_rate": 0.25,
+      "min_accuracy": 0.75,
+      "min_retained_per_condition": 0.5
+    }
+  },
+  "result": {
+    "component": "P3",
+    "channel": "Pz",
+    "window_ms": [
+      300,
+      600
+    ],
+    "contrast": "target minus non-target",
+    "published": {
+      "n": 34,
+      "difference_mean_amplitude_uv": 6.29,
+      "difference_sd_uv": 3.39,
+      "dz": 1.86,
+      "source": "Kappenman et al. 2021, Tables 1-3 (difference wave, rare minus frequent)",
+      "subject_values": {
+        "file": "reference/Mean_Amplitude_Diff_Waves_P3.txt",
+        "source": "https://osf.io/etdkz/ (P3 All Data and Scripts/EEG_ERP_Processing/ERP_Measurements)",
+        "osf_file_id": "5f18c6c985d25a0024ef6149",
+        "sha256": "e1ce5f448a0dc7f552743cc5e86412d14c95f862b54ef92b870106da82123b86",
+        "license": "CC-BY-SA-4.0"
+      },
+      "excluded_subjects": {
+        "006": "ACC, TC",
+        "009": "AR, TC",
+        "010": "ACC, TC",
+        "030": "AR, TC",
+        "035": "TC",
+        "040": "AR, TC",
+        "source": "P3_Subject_Summary.xlsx in https://osf.io/etdkz/ (AR: over 25% of trials rejected; TC: under 50% of rare trials left; ACC: accuracy under 75%)"
+      }
+    },
+    "this_run_after_exclusions": {
+      "n": 32,
+      "mean_uv": 6.174,
+      "sd_uv": 3.008,
+      "dz": 2.053
+    },
+    "this_run_all_participants": {
+      "n": 40,
+      "mean_uv": 6.044,
+      "sd_uv": 3.183,
+      "dz": 1.899
+    },
+    "excluded": {
+      "005": "artifacts 40%; target retained 19/40",
+      "006": "target retained 5/40",
+      "009": "artifacts 57%; target retained 17/40; non-target retained 61/160",
+      "010": "target retained 8/40",
+      "027": "target retained 19/40",
+      "029": "artifacts 40%; target retained 17/40",
+      "030": "artifacts 40%",
+      "035": "target retained 18/40"
+    },
+    "paper_excluded": [
+      "006",
+      "009",
+      "010",
+      "030",
+      "035",
+      "040"
+    ],
+    "per_participant_vs_paper": {
+      "n": 31,
+      "pearson_r": 0.88,
+      "mean_difference_uv": -0.453,
+      "mean_absolute_difference_uv": 1.204
+    },
+    "missing_pipeline_output": []
+  },
+  "job": {
+    "input_location": "local",
+    "host": "fedora-legion-nvidia",
+    "launcher_python": "3.11.4",
+    "cpu_count": 16,
+    "jobs": 8,
+    "pipeline_seconds": 561,
+    "total_seconds": 599
+  }
+}
