@@ -35,7 +35,7 @@ app key.
 
 ## 3. Store your credentials (never commit secrets)
 ```bash
-git clone https://github.com/m9h/nsg-agent-kit && cd nsg-agent-kit
+git clone https://github.com/NeuroTechX/nsg-agent-kit && cd nsg-agent-kit
 cp nsgr/config.example.env nsgr/config.env        # gitignored — then edit:
 #   NSG_USER=<your username>   NSG_APPKEY=<the Application ID>   NSG_TOOL=PYTORCH_PY_EXPANSE
 # Stash your password in a 0600 file (never in the repo):

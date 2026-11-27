@@ -56,7 +56,7 @@ The repo ships a tiny, self-contained example — a frozen-encoder + linear-prob
 (torch only, ~2 min). It's the "hello world" of NSG and prints the platform facts.
 
 ```bash
-git clone https://github.com/m9h/nsg-agent-kit && cd nsg-agent-kit
+git clone https://github.com/NeuroTechX/nsg-agent-kit && cd nsg-agent-kit
 cd probes/reve_frozen_probe && ./make_zip.sh      # -> reve_frozen_probe.zip
 ```
 
