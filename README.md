@@ -1,5 +1,8 @@
 # nsg-agent-kit
 
+**Working through NeuroTechX Learn?** Start with [your first public EEG job](lessons/pursue-p300/README.md).
+It uses the NSG web portal and includes an example you can inspect before creating an account.
+
 **Get free GPU compute for computational neuroscience on the Neuroscience Gateway (NSG → SDSC
 Expanse) — for people *and* AI agents.**
 

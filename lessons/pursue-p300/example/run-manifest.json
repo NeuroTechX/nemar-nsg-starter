@@ -1,0 +1,106 @@
+{
+  "dataset": {
+    "openneuro_id": "ds007056",
+    "openneuro_version": "1.1.1",
+    "openneuro_doi": "10.18112/openneuro.ds007056.v1.1.1",
+    "nemar_id": "on007056",
+    "subject": "1013",
+    "task": "VisualOddball",
+    "license": "CC0",
+    "git_revision": "7a9ac37458c3caede7061aed159165116d75793b",
+    "recording": "sub-1013/eeg/sub-1013_task-VisualOddball_eeg.set",
+    "events": "sub-1013/eeg/sub-1013_task-VisualOddball_events.tsv",
+    "event_dictionary": "task-VisualOddball_events.json",
+    "sha256": {
+      "dataset_description.json": "a9867952707990cba20c606f661ea077dfc3590282caeb532b948cb2b19a99f7",
+      "task-VisualOddball_events.json": "4957e288ab7617a519a9afa4b0ffa7b34a4d5fc70f4b8eee327a084412df3673",
+      "sub-1013/eeg/sub-1013_task-VisualOddball_channels.tsv": "7f6b7193c050fa4103c1d9077caa3e51d8a6d4aad69afe8dcb8ef3db6ba5bd77",
+      "sub-1013/eeg/sub-1013_task-VisualOddball_eeg.json": "fee6e82454de74a98b0d80a330ca31c6b3338de0df3afe56784528f668c405e9",
+      "sub-1013/eeg/sub-1013_task-VisualOddball_eeg.set": "198dedc4400f89df8f7929247c0de1823c658691542858f1db0e005e3e547466",
+      "sub-1013/eeg/sub-1013_task-VisualOddball_events.tsv": "7590a14d7353f572ec87e25212f801aeb42789b2c816a0785165a8b509d561cb"
+    }
+  },
+  "input_location": "local",
+  "environment": {
+    "python": "3.11.15",
+    "mne": "1.5.1",
+    "numpy": "1.25.2",
+    "scipy": "1.11.2",
+    "matplotlib": "3.7.3"
+  },
+  "analysis": {
+    "channel": "Pz",
+    "scalp_eeg_channels": 29,
+    "sample_rate_hz": 500.0,
+    "erp_reference": "average of scalp EEG channels",
+    "rejection_reference": "as recorded",
+    "epoch_s": [
+      -0.2,
+      0.8
+    ],
+    "baseline_s": [
+      -0.2,
+      0.0
+    ],
+    "filter_hz": [
+      0.5,
+      30.0
+    ],
+    "reject_eeg_peak_to_peak_uv": 150.0,
+    "measurement_window_ms": [
+      300,
+      600
+    ]
+  },
+  "found": {
+    "target": 34,
+    "standard": 136
+  },
+  "retained": {
+    "target": 15,
+    "standard": 66
+  },
+  "drop_reasons": {
+    "target": {
+      "FP1": 9,
+      "O1": 6,
+      "O2": 7,
+      "Oz": 7,
+      "P4": 1,
+      "P7": 4,
+      "P8": 4,
+      "PO3": 4,
+      "PO4": 3,
+      "PO7": 5,
+      "PO8": 6,
+      "Pz": 1,
+      "TP10": 8,
+      "TP9": 13
+    },
+    "standard": {
+      "C3": 2,
+      "C4": 2,
+      "C5": 2,
+      "C6": 1,
+      "CPz": 2,
+      "Cz": 1,
+      "FP1": 44,
+      "FP2": 1,
+      "O1": 46,
+      "O2": 47,
+      "Oz": 47,
+      "P3": 7,
+      "P4": 5,
+      "P7": 32,
+      "P8": 24,
+      "PO3": 22,
+      "PO4": 16,
+      "PO7": 42,
+      "PO8": 44,
+      "Pz": 5,
+      "TP10": 42,
+      "TP9": 53
+    }
+  },
+  "target_minus_standard_mean_uv": 2.328923
+}
